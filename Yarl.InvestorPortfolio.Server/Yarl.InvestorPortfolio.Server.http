@@ -1,0 +1,6 @@
+@Yarl.InvestorPortfolio.Server_HostAddress = http://localhost:5247
+
+GET {{Yarl.InvestorPortfolio.Server_HostAddress}}/investors/
+Accept: application/json
+
+###

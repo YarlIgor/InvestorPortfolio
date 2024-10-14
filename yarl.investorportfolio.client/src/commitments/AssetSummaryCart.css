@@ -1,0 +1,14 @@
+.main-container {
+  width: 100px;
+  height: 75px;
+  padding: 5px;
+  margin-left: 20px;
+  border: 1px solid black;
+}
+.main-container.active {
+  background-color: lightgrey;
+  font-weight: bold;
+}
+.main-container.inactive {
+  background-color: white;
+}
