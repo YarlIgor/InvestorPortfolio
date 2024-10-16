@@ -5,8 +5,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import Investors from "./investors/Investors";
-import Commitments from "./commitments/Commitments";
+import Investors from "./components/investors/Investors";
+import Commitments from "./components/commitments/Commitments";
 
 function App() {
   return (

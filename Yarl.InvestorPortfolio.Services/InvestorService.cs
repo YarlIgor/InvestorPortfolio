@@ -22,5 +22,9 @@ namespace Yarl.InvestorPortfolio.Services
             return await _repository.GetAll();
         }
 
+        public async Task<IEnumerable<AssetClassSummary>> GetAssetsSummmaries(long investorId)
+        {
+            return await _repository.GetAssetsSummmaries(investorId);
+        }
     }
 }

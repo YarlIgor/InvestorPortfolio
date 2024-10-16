@@ -1,10 +1,9 @@
 import "./AssetSummaryCart.css";
-import "../types/enums";
-import { AssetClasses, AssetClassToString } from "../types/enums";
-import { formatNumber } from "../utils/numberHelper.ts";
+import { AssetClasses, AssetClassToString } from "../../types/enums.ts";
+import { AssetSummary } from "../../types/interfaces.ts";
+import { formatNumber } from "../../utils/numberHelper.ts";
 
-interface AssetSummaryProps {
-  amount: number;
+interface AssetSummaryProps extends AssetSummary {
   assetClass: AssetClasses;
   isActive: boolean;
   onCallBack: (assetClass: number) => void;

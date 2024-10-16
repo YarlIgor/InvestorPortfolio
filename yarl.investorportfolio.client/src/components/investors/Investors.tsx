@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { InvestoryTypes, InvestoryTypeToString } from "../types/enums.ts";
-import { formatDate } from "../utils/dateHelper.ts";
+import { InvestoryTypes, InvestoryTypeToString } from "../../types/enums.ts";
+import { formatDate } from "../../utils/dateHelper.ts";
 
 interface Investor {
   id: number;

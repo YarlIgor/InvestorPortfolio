@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Yarl.InvestorPortfolio.Core.Enums;
 using Yarl.InvestorPortfolio.Services.Interfaces;
 
 namespace ReactApp2.Server.Controllers
@@ -26,10 +27,18 @@ namespace ReactApp2.Server.Controllers
         }
 
         [HttpGet("{investorId}/commitments")]
-        public async Task<IActionResult> GetCommitments(long investorId)
+        public async Task<IActionResult> GetCommitments(long investorId, AssetClasses assetClass = AssetClasses.All, int pageSize = 20, int pageNumber = 1)
         {
-            var commitments = await _commitmentService.GetCommitments(investorId);
-            return Ok(commitments);
+            var commitments = await _commitmentService.GetCommitments(investorId, assetClass, pageSize, pageNumber);
+            var commitmentsCount = await _commitmentService.GetCommitmentsCount(investorId, assetClass);
+            return Ok(new { commitments, commitmentsCount });
+        }
+
+        [HttpGet("{investorId}/assets")]
+        public async Task<IActionResult> GetAssets(long investorId)
+        {
+            var assets = await _investorService.GetAssetsSummmaries(investorId);
+            return Ok(new { assets, investorId });
         }
     }
 }

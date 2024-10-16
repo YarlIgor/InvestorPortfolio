@@ -27,5 +27,11 @@ namespace Yarl.InvestorPortfolio.DataAccess
             await connection.ExecuteAsync(sql, investor);
         }
 
+        public async Task<IEnumerable<AssetClassSummary>> GetAssetsSummmaries(long investorId)
+        {
+            using var connection = _context.CreateConnection();
+            var sql = "SELECT c.AssetClass, SUM(c.Amount) AS Amount FROM Commitments c WHERE c.InvestorId = @investorId GROUP BY c.AssetClass;";
+            return await connection.QueryAsync<AssetClassSummary>(sql, new { investorId });
+        }
     }
 }

@@ -6,5 +6,6 @@ namespace Yarl.InvestorPortfolio.DataAccess.Interfaces
     {
         Task<IEnumerable<Investor>> GetAll();
         Task Add(Investor investor);
+        Task<IEnumerable<AssetClassSummary>> GetAssetsSummmaries(long investorId);
     }
 }
