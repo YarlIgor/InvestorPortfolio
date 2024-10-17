@@ -51,51 +51,49 @@ function Commitments() {
   }, [investorId, assetClass, pageNumber]);
 
   return (
-    <>
-      <div className="list-items">
-        <h1 className="list-title">Commitments</h1>
-        <AssetsSummariesFilter
-          onFilterChanged={updateFilteredAssets}
-          assetClass={assetClass}
-        />
-        {loading && <p>Loading investor commitments...</p>}
-        {error && <p>Error: {error}</p>}
-        {!loading && !error && commitments?.length == 0 && (
-          <p>No commitments found for the investor with specified filters.</p>
-        )}
+    <div className="list-items">
+      <h1 className="list-title">Commitments</h1>
+      <AssetsSummariesFilter
+        onFilterChanged={updateFilteredAssets}
+        assetClass={assetClass}
+      />
+      {loading && <p>Loading investor commitments...</p>}
+      {error && <p>Error: {error}</p>}
+      {!loading && !error && commitments?.length == 0 && (
+        <p>No commitments found for the investor with specified filters.</p>
+      )}
 
-        {!loading && !error && commitments?.length > 0 && (
-          <>
-            <table className="table table-striped">
-              <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Asset Class</th>
-                  <th>Currency</th>
-                  <th>Amount</th>
+      {!loading && !error && commitments?.length > 0 && (
+        <>
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Asset Class</th>
+                <th>Currency</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              {commitments.map((c) => (
+                <tr key={c.id}>
+                  <td>{c.id}</td>
+                  <td>{AssetClassToString[c.assetClass]}</td>
+                  <td>{c.currency}</td>
+                  <td>{formatNumber(c.amount)}</td>
                 </tr>
-              </thead>
-              <tbody>
-                {commitments.map((c) => (
-                  <tr key={c.id}>
-                    <td>{c.id}</td>
-                    <td>{AssetClassToString[c.assetClass]}</td>
-                    <td>{c.currency}</td>
-                    <td>{formatNumber(c.amount)}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <Pagination
-              currentPage={pageNumber}
-              pageSize={PAGE_SIZE}
-              totalRecords={commitmentsCount}
-              onPageChange={onPageChange}
-            />
-          </>
-        )}
-      </div>
-    </>
+              ))}
+            </tbody>
+          </table>
+          <Pagination
+            currentPage={pageNumber}
+            pageSize={PAGE_SIZE}
+            totalRecords={commitmentsCount}
+            onPageChange={onPageChange}
+          />
+        </>
+      )}
+    </div>
   );
 }
 
